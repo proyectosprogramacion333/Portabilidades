@@ -216,12 +216,12 @@
   <!-- Pantalla 2: Datos (popup) -->
   <div class="screen" id="screen2">
     <h2>Ingresa tus datos para empezar el test</h2>
-    <form id="userData" onsubmit="event.preventDefault(); saveLead1(); startTest();">
+    <form id="userData" onsubmit="event.preventDefault(); startTest();">
       <input type="text" placeholder="Nombre*" required>
       <input type="text" placeholder="Apellido Paterno*" required>
       <input type="email" placeholder="Correo electrónico*" required>
       <input type="tel" placeholder="Número telefónico*" required>
-      <button type="submit">Comenzar test</button>
+      <button onclick="saveLead1()">Comenzar test</button>
     </form>
     <p>Política de Privacidad</p>
   </div>

@@ -57,6 +57,15 @@
     .screen:not(.active) {
       display: none !important;
     }
+    /* Adaptación para móviles en la pantalla 1 */
+    @media (max-width: 600px) {
+      #screen1 {
+        padding: 20px;
+        min-height: 60vh;
+        background-size: cover;
+        background-position: center top;
+      }
+    }
     /* Pantalla 1 - Inicio */
     #screen1 {
       background: var(--azul-marino);
@@ -216,7 +225,8 @@
   <!-- Pantalla 2: Datos (popup) -->
   <div class="screen" id="screen2">
     <h2>Ingresa tus datos para empezar el test</h2>
-    <form id="userData" onsubmit="event.preventDefault();startTest(); saveLead1();">
+    <!-- Se invierte el orden para primero guardar los datos en userData y luego llamamos a saveLead1 -->
+    <form id="userData" onsubmit="event.preventDefault(); startTest(); saveLead1();">
       <input type="text" placeholder="Nombre*" required>
       <input type="text" placeholder="Apellido Paterno*" required>
       <input type="email" placeholder="Correo electrónico*" required>
@@ -244,18 +254,18 @@
         </svg>
       </div>
       <p>Te ayudamos a ahorrar en tu línea móvil sin complicaciones</p>
-     <!-- <div class="arrow-down">↓ Desplázate hacia abajo</div> -->
+      <!--<div class="arrow-down">↓ Desplázate hacia abajo</div>-->
     </header>
     <div class="progress-bar">
       <div class="progress" style="width: 17%"></div>
     </div>
     <div class="question-content">
       <h3>¿Con qué compañía tienes actualmente tu línea móvil?</h3>
-      <button onclick="addScore(1)">Telcel</button>
-      <button onclick="addScore(5)">Movistar</button>
-      <button onclick="addScore(3)">AT&T</button>
-      <button onclick="addScore(4)">BAIT</button>
-      <button onclick="addScore(0)">Otros</button>
+      <button onclick="addScore(1, 'Telcel')">Telcel</button>
+      <button onclick="addScore(5, 'Movistar')">Movistar</button>
+      <button onclick="addScore(3, 'AT&T')">AT&T</button>
+      <button onclick="addScore(4, 'BAIT')">BAIT</button>
+      <button onclick="addScore(0, 'Otros')">Otros</button>
     </div>
   </div>
 
@@ -282,12 +292,12 @@
     </div>
     <div class="question-content">
       <h3>¿Cada cuánto recargas tu teléfono?</h3>
-      <button onclick="addScore(1)">Cada 2 días</button>
-      <button onclick="addScore(3)">Cada 5 días</button>
-      <button onclick="addScore(7)">Cada 7 días</button>
-      <button onclick="addScore(8)">Cada 15 días</button>
-      <button onclick="addScore(10)">Cada 30 días</button>
-      <button onclick="addScore(0)">Otro</button>
+      <button onclick="addScore(1, 'Cada 2 días')">Cada 2 días</button>
+      <button onclick="addScore(3, 'Cada 5 días')">Cada 5 días</button>
+      <button onclick="addScore(7, 'Cada 7 días')">Cada 7 días</button>
+      <button onclick="addScore(8, 'Cada 15 días')">Cada 15 días</button>
+      <button onclick="addScore(10, 'Cada 30 días')">Cada 30 días</button>
+      <button onclick="addScore(0, 'Otro')">Otro</button>
     </div>
   </div>
 
@@ -314,12 +324,12 @@
     </div>
     <div class="question-content">
       <h3>¿Cuánto gastas al mes en recargas?</h3>
-      <button onclick="addScore(1)">30</button>
-      <button onclick="addScore(2)">50-60</button>
-      <button onclick="addScore(5)">100</button>
-      <button onclick="addScore(2)">200</button>
-      <button onclick="addScore(1)">300</button>
-      <button onclick="addScore(0)">+ 300</button>
+      <button onclick="addScore(1, '30')">30</button>
+      <button onclick="addScore(2, '50-60')">50-60</button>
+      <button onclick="addScore(5, '100')">100</button>
+      <button onclick="addScore(2, '200')">200</button>
+      <button onclick="addScore(1, '300')">300</button>
+      <button onclick="addScore(0, '+ 300')">+ 300</button>
     </div>
   </div>
 
@@ -346,8 +356,8 @@
     </div>
     <div class="question-content">
       <h3>¿Has comparado tu oferta actual con el resto de las compañías en los últimos 6 meses?</h3>
-      <button onclick="addScore(4)">Sí</button>
-      <button onclick="addScore(2)">No</button>
+      <button onclick="addScore(4, 'Sí')">Sí</button>
+      <button onclick="addScore(2, 'No')">No</button>
     </div>
   </div>
 
@@ -374,8 +384,8 @@
     </div>
     <div class="question-content">
       <h3>¿Experimentas caídas en tus llamadas o problemas de cobertura?</h3>
-      <button onclick="addScore(0)">Sí</button>
-      <button onclick="addScore(5)">No</button>
+      <button onclick="addScore(0, 'Sí')">Sí</button>
+      <button onclick="addScore(5, 'No')">No</button>
     </div>
   </div>
 
@@ -402,15 +412,16 @@
     </div>
     <div class="question-content">
       <h3>¿Te interesaría una consulta gratuita para explorar mejores tarifas adaptadas a tu uso?</h3>
-      <button onclick="addScore(5)">Sí</button>
-      <button onclick="addScore(1)">No</button>
+      <button onclick="addScore(5, 'Sí')">Sí</button>
+      <button onclick="addScore(1, 'No')">No</button>
     </div>
   </div>
 
   <!-- Pantalla 9: Resultados + Pantalla 10: Video promocional y llamada -->
   <div class="screen" id="results">
     <h2>¡Felicidades por completar el cuestionario Ahorra en tu gasto del celular!</h2>
-    <p>Tu potencial de ahorro es muy alto. Tienes muchas oportunidades de pagar menos por lo que usas. ¡Revisa tu puntaje!</p>
+    <!-- Nuevo elemento para mostrar el mensaje clasificado -->
+    <p id="resultMessage"></p>
     <!-- Contenedor fijo para el gauge -->
     <div id="gaugeContainer" style="width:200px; height:100px; margin:0 auto;">
       <canvas id="gaugeChart" width="200" height="100"></canvas>
@@ -426,7 +437,7 @@
   <script>
     let currentQuestion = 1; // desde 1 hasta 6
     let totalScore = 0;
-    const userData = { responses: [] };  // Se almacenarán las respuestas
+    const userData = { responses: [] };  // Se almacenarán las respuestas (ahora con label)
     let gaugeChart; // variable global para el gráfico
 
     // Función para mostrar la pantalla con id dado y hacer scroll hacia ella
@@ -437,7 +448,7 @@
       activeScreen.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Inicia el test luego de ingresar los datos y guarda el lead en Google Sheets vía Apps Script
+    // Inicia el test luego de ingresar los datos y guarda los datos en userData
     function startTest() {
       const inputs = document.querySelectorAll('#screen2 input');
       userData.nombre = inputs[0].value;
@@ -450,11 +461,10 @@
       showScreen(`question${currentQuestion}`);
     }
 
-    // Se ejecuta cada vez que se responde una pregunta; suma el puntaje, guarda la respuesta y pasa a la siguiente pantalla
-    function addScore(points) {
+    // Se ejecuta cada vez que se responde una pregunta; suma el puntaje, guarda la respuesta (número y label) y pasa a la siguiente pantalla
+    function addScore(points, label) {
       totalScore += points;
-      // Guarda la respuesta (puedes ampliar la lógica para guardar la opción seleccionada)
-      userData.responses.push({ question: currentQuestion, score: points });
+      userData.responses.push({ question: currentQuestion, score: points, label: label });
       if (currentQuestion < 6) {
         currentQuestion++;
         showScreen(`question${currentQuestion}`);
@@ -463,10 +473,20 @@
       }
     }
 
-    // Muestra la pantalla de resultados y actualiza el gauge con Chart.js
+    // Muestra la pantalla de resultados, clasifica el mensaje según el puntaje y actualiza el gauge
     function showResults() {
       document.getElementById('finalScore').textContent = totalScore;
-      let value = totalScore; // Se asume un máximo de 100
+      let message = "";
+      if (totalScore < 60) {
+        message = "Alto potencial de ahorro. Tu potencial de ahorro en la factura de tu móvil es muy alto. Tienes muchas oportunidades de pagar menos por lo que usas en telefonica celular. Considera revisar tus patrones de uso y explorar planes más adecuados para ahorrar dinero.";
+      } else if (totalScore < 80) {
+        message = "Medio potencial de ahorro. Tu potencial de ahorro en la factura de tu móvil es alto. Tienes oportunidades de pagar menos por lo que usas en telefonica celular. Considera revisar tus patrones de uso y explorar planes más adecuados para ahorrar dinero.";
+      } else {
+        message = "Bajo potencial de ahorro. Tu potencial de ahorro en la factura de tu móvil es bajo. Sin embargo, aún tienes oportunidades de pagar menos por lo que usas en telefonica celular. Considera revisar tus patrones de uso y explorar planes más adecuados para ahorrar dinero.";
+      }
+      document.getElementById('resultMessage').textContent = message;
+
+      let value = totalScore;
       if (!gaugeChart) {
         const ctx = document.getElementById('gaugeChart').getContext('2d');
         gaugeChart = new Chart(ctx, {
@@ -496,41 +516,42 @@
       showScreen('results');
     }
 
- // Función para guardar el lead en Google Sheets vía Google Apps Script (sin leer respuesta)
-async function saveLead1() {
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbz2t69o5ORL9mPx4lU6T5Wj46dJGTpNWrk2YCnoe0hfLruNZ7_rz4tpPNTDvStHqqN4/exec", {
-      method: "POST",
-      mode: "no-cors",  // <--- Usamos no-cors
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
-    });
-    // La respuesta será opaca; no se puede leer, pero la solicitud se realizó
-    console.log("Solicitud enviada (no-cors).");
-  } catch (error) {
-    console.error("Error al enviar la solicitud:", error);
-  }
-}
+    // Función para guardar el lead en Google Sheets vía Google Apps Script
+    async function saveLead1() {
+      try {
+        // URL de tu Web App publicado en Google Apps Script
+        const response = await fetch("https://script.google.com/macros/s/AKfycbz2t69o5ORL9mPx4lU6T5Wj46dJGTpNWrk2YCnoe0hfLruNZ7_rz4tpPNTDvStHqqN4/exec", {
+          method: "POST",
+          mode: "no-cors",  // Se usa no-cors para evitar errores
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(userData)
+        });
+        console.log("Solicitud enviada (no-cors).");
+      } catch (error) {
+        console.error("Error al enviar la solicitud:", error);
+      }
+    }
 
-// Función para guardar el lead y enviar notificación (igual, modo no-cors)
-async function saveLead_notificacion() {
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycby0is6a8cAfizHASTYtMTZPxOb2GDigb0694tBcAiXtYoOjHlqSdg11NY_0jOofGM88/exec", {
-      method: "POST",
-      mode: "no-cors",  // <--- Usamos no-cors
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
-    });
-    console.log("Solicitud de notificación enviada (no-cors).");
-    alert("¡Gracias! Nos pondremos en contacto contigo pronto.");
-  } catch (error) {
-    console.error("Error al enviar la solicitud de notificación:", error);
-  }
-}
+    // Función para guardar el lead y enviar notificación por correo para agendar llamada
+    async function saveLead_notificacion() {
+      try {
+        // Usa la URL que corresponda para notificaciones (puedes usar la misma o configurarla aparte)
+        const response = await fetch("https://script.google.com/macros/s/AKfycby0is6a8cAfizHASTYtMTZPxOb2GDigb0694tBcAiXtYoOjHlqSdg11NY_0jOofGM88/exec", {
+          method: "POST",
+          mode: "no-cors",  // Usamos no-cors para evitar errores de CORS
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(userData)
+        });
+        console.log("Solicitud de notificación enviada (no-cors).");
+        alert("¡Gracias! Nos pondremos en contacto contigo pronto.");
+      } catch (error) {
+        console.error("Error al enviar la solicitud de notificación:", error);
+      }
+    }
   </script>
 </body>
 </html>

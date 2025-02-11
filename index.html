@@ -102,6 +102,13 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
+    /* Aquí se agrega validación al número telefónico */
+    #screen2 form input[type="tel"] {
+      pattern: "[0-9]{10}";
+      maxlength: "10";
+      inputmode: "numeric";
+    }
+
     #screen2 form button {
       display: block;
       width: 100%;
@@ -231,7 +238,7 @@
       <input type="text" placeholder="Nombre*" required>
       <input type="text" placeholder="Apellido Paterno*" required>
       <input type="email" placeholder="Correo electrónico*" required>
-      <input type="tel" placeholder="Número telefónico*" required>
+      <input type="tel" placeholder="Número telefónico*" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" title="El número telefónico debe tener 10 dígitos" required>
       <button type="submit">Comenzar test</button>
     </form>
     <p>Política de Privacidad</p>

@@ -325,12 +325,12 @@
     </div>
     <div class="question-content">
       <h3>¿Cuánto gastas al mes en recargas?</h3>
-      <button onclick="addScore(1, '30')">30</button>
-      <button onclick="addScore(2, '50-60')">50-60</button>
-      <button onclick="addScore(5, '100')">100</button>
-      <button onclick="addScore(2, '200')">200</button>
-      <button onclick="addScore(1, '300')">300</button>
-      <button onclick="addScore(0, '+ 300')">+ 300</button>
+      <button onclick="addScore(1, '30')">$30</button>
+      <button onclick="addScore(2, '50-60')">$50-$60</button>
+      <button onclick="addScore(5, '100')">$100</button>
+      <button onclick="addScore(2, '200')">$200</button>
+      <button onclick="addScore(1, '300')">$300</button>
+      <button onclick="addScore(0, '+ 300')">+ $300</button>
     </div>
   </div>
 
@@ -481,7 +481,7 @@
       document.getElementById('finalScore').textContent = percent + "%";
       
       let message = "";
-      if (percent < 60) {
+      if (percent < 65) {
         message = "Tu potencial de ahorro en la factura de tu móvil es muy alto. Tienes muchas oportunidades de pagar menos por lo que usas en telefonica celular. Considera revisar tus patrones de uso y explorar planes más adecuados para ahorrar dinero.";
       } else if (percent < 80) {
         message = "Tu potencial de ahorro en la factura de tu móvil es alto. Tienes oportunidades de pagar menos por lo que usas en telefonica celular. Considera revisar tus patrones de uso y explorar planes más adecuados para ahorrar dinero.";

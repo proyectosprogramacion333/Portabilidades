@@ -490,6 +490,8 @@
     function showResults() {
       let percent = Math.round((totalScore / maxScore) * 100);
       document.getElementById('finalScore').textContent = percent + "%";
+
+      userData.totalScore = percent;
       
       let message = "";
       if (percent < 65) {
